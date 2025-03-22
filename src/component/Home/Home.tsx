@@ -22,7 +22,6 @@ export default function Home() {
 
             <BusinessSolutionsSection />
 
-            <CTASection />
 
         </div>
     );

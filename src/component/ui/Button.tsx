@@ -15,12 +15,12 @@ const Button = ({
     className,
     ...props
 }: ButtonProps) => {
-    const baseClasses = "rounded font-medium transition duration-300";
+    const baseClasses = "rounded-lg cursor-pointer font-semibold transition duration-300";
 
     const variantClasses: Record<Required<ButtonProps>['variant'], string> = {
-        primary: "bg-white text-blue-900 hover:bg-blue-100",
-        secondary: "bg-blue-600 text-white hover:bg-blue-700",
-        outline: "border border-white text-white hover:bg-white hover:text-blue-900"
+        primary: "bg-white text-[#05152C] hover:bg-[#03061D] hover:text-white",
+        secondary: "bg-[#03217F] text-white border-[#22263F] border-2",
+        outline: "border border-white text-white hover:bg-white hover:text-[#03061D]"
     };
 
     const sizeClasses: Record<Required<ButtonProps>['size'], string> = {

@@ -2,45 +2,44 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import TabContent from './TabContent';
-import AnimatedChart from './AnimatedChart';
-import Tab from '../ui/Tab';
+import Button from '../ui/Button';
+import Image from 'next/image';
 
 const tabData = [
     {
         id: "market-prediction",
         label: "Market Prediction",
         title: "Use AI insights for smarter business decisions and stay competitive.",
-        description: "Our predictive analytics help you make data-driven decisions with confidence.",
-        ctaText: "Learn More"
+        ctaText: "Learn More",
+        image: "/images/market/market.jpeg"
     },
     {
         id: "finance",
         label: "Finance",
         title: "Our AI financial analytics process data for smart investments.",
-        description: "Optimize your financial strategy with advanced AI-powered analytics.",
-        ctaText: "Read More"
+        ctaText: "Read More",
+        image: "/images/market/finance.jpeg"
     },
     {
         id: "analytics",
         label: "Analytics",
         title: "Transform raw data into actionable business insights.",
-        description: "Our analytics solutions help you discover patterns and opportunities hidden in your data.",
-        ctaText: "Explore"
+        ctaText: "Explore",
+        image: "/images/market/analytics.jpeg"
     },
     {
         id: "content-generation",
         label: "Content Generation",
         title: "Create engaging content with AI assistance.",
-        description: "Streamline your content creation process with our advanced AI tools.",
-        ctaText: "Try Now"
+        ctaText: "Try Now",
+        image: "/images/market/content.jpeg"
     },
     {
         id: "customer-support",
         label: "Customer Support",
         title: "Enhance customer experiences with AI-powered support.",
-        description: "Our solutions help you deliver exceptional customer service around the clock.",
-        ctaText: "Get Started"
+        ctaText: "Get Started",
+        image: "/images/market/support.jpeg"
     }
 ];
 
@@ -48,63 +47,96 @@ const BusinessSolutionsSection = () => {
     const [activeTab, setActiveTab] = useState("market-prediction");
 
     return (
-        <section className="py-16 px-6 md:px-12">
-            <div className="container mx-auto">
+        <section className="py-16 px-4 bg-white">
+            <div className="mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7 }}
                     className="text-center mb-12"
                 >
-                    <h2 className="text-2xl md:text-3xl font-bold mb-4">AI Models tailored for your business needs</h2>
-                    <p className="max-w-2xl mx-auto text-gray-600">
+                    <h2 className="text-4xl md:text-5xl font-semibold mb-4 text-[#22263F]">AI Models tailored for your <br /> business needs</h2>
+                    <p className="max-w-2xl mx-auto text-[#828282]">
                         Leverage the power of AI to automate, analyze, and optimize your workflows. Our specialized models are designed to fit different business needs.
                     </p>
                 </motion.div>
 
-                {/* Tab Navigation */}
-                <div className="mb-12">
-                    <div className="flex flex-wrap justify-center space-x-2 mb-8">
-                        {tabData.map((tab) => (
-                            <Tab
-                                key={tab.id}
-                                label={tab.label}
-                                isActive={activeTab === tab.id}
-                                onClick={() => setActiveTab(tab.id)}
-                            />
-                        ))}
-                    </div>
+                {/* Navigation Pills */}
+                <div className="flex justify-center gap-4 mb-12">
+                    {tabData.map((tab) => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`px-4 py-2 transition-all ${activeTab === tab.id
+                                ? 'bg-[#03217F] text-white rounded-lg font-medium'
+                                : 'text-[#A7A7A7]'
+                                }`}
+                        >
+                            {tab.label}
+                        </button>
+                    ))}
+                </div>
 
-                    {/* Tab Content */}
-                    <div className="grid md:grid-cols-2 gap-8">
-                        <AnimatePresence mode="wait">
-                            {tabData.map((tab) => {
-                                if (activeTab !== tab.id) return null;
+                <div className="relative overflow-hidden">
+                    <div className="flex justify-center items-center">
+                        {tabData.map((tab, index) => {
+                            const isActive = activeTab === tab.id;
+                            const position = tabData.findIndex(t => t.id === activeTab);
+                            const itemPosition = index - position;
 
-                                return (
-                                    <TabContent
-                                        key={tab.id}
-                                        id={tab.id}
-                                        title={tab.title}
-                                        description={tab.description}
-                                        ctaText={tab.ctaText}
-                                    />
-                                );
-                            })}
-                        </AnimatePresence>
+                            return (
+                                <motion.div
+                                    key={tab.id}
+                                    className={`relative ${isActive
+                                        ? 'w-[1000px] bg-[#F6FAF3]'
+                                        : 'w-[400px] bg-white'
+                                        } rounded-2xl`}
+                                    animate={{
+                                        scale: isActive ? 1 : 0.85,
+                                        x: itemPosition * 300,
+                                        opacity: isActive ? 1 : 0.8,
+                                        zIndex: isActive ? 2 : 0,
+                                    }}
+                                    transition={{ duration: 0.5 }}
+                                >
+                                    <div className={`grid grid-cols-2 ${isActive ? 'h-[500px]' : 'h-[300px]'} gap-8 p-8`}>
+                                        <div className="space-y-6">
+                                            <p className="text-[#828282] text-sm">
+                                                {tab.label}
+                                            </p>
+                                            <h2 className={`font-bold text-[#1D2939] ${isActive ? 'text-4xl leading-tight' : 'text-2xl'
+                                                }`}>
+                                                {tab.title}
+                                            </h2>
+                                            {isActive && (
+                                                <Button
+                                                    variant="secondary"
+                                                    size="lg"
+                                                    className="mt-8"
+                                                >
+                                                    {tab.ctaText}
+                                                </Button>
+                                            )}
+                                        </div>
 
-                        {/* Image Section - Always shows the active tab's image */}
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={activeTab}
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: 20 }}
-                                transition={{ duration: 0.5 }}
-                            >
-                                <AnimatedChart />
-                            </motion.div>
-                        </AnimatePresence>
+                                        <div className={`${isActive ? 'h-[420px]' : 'h-[300px]'} relative rounded-xl overflow-hidden`}>
+                                            {tab.image ? (
+                                                <Image
+                                                    src={tab.image}
+                                                    alt={tab.label}
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            ) : (
+                                                <div className="h-full w-full bg-gray-200 flex items-center justify-center">
+                                                    <p className="text-[#828282]">Image not available</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

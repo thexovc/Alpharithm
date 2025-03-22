@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Button from '../ui/Button';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,14 +17,19 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="bg-blue-900 text-white py-4 px-6 md:px-12">
+        <nav className="bg-[#04142B] text-white py-4 px-6 md:px-12">
             <div className="container mx-auto flex justify-between items-center">
-                <div className="flex items-center">
-                    <motion.div
-                        whileHover={{ rotate: 10 }}
-                        className="w-8 h-8 bg-blue-500 rounded"
-                    />
-                </div>
+                <Link href={"/"} className="flex items-center">
+                    <motion.div whileHover={{ rotate: 10 }}>
+                        <Image
+                            src="/images/home/logo.svg"
+                            alt="Logo"
+                            width={32}
+                            height={32}
+                            className="w-10 h-10"
+                        />
+                    </motion.div>
+                </Link>
 
                 {/* Desktop Navigation */}
                 <div className="hidden md:flex space-x-6">
@@ -39,8 +46,8 @@ const Navbar = () => {
                 </div>
 
                 <div className="flex space-x-4">
-                    <Button variant="outline" size="sm">Login</Button>
-                    <Button variant="primary" size="sm">Get Started</Button>
+                    <Button variant="outline" size="md">Login</Button>
+                    <Button variant="primary" size="md">Get Started</Button>
                 </div>
 
                 {/* Mobile Menu Button */}

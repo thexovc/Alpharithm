@@ -10,7 +10,7 @@ const HeroSection = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="text-sm md:text-base mb-2"
+                    className="text-xl font-semibold md:text-base mb-2 text-[#7191FF]"
                 >
                     Leverage our Automation
                 </motion.h5>
@@ -18,7 +18,7 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
-                    className="text-3xl md:text-5xl font-bold mb-6"
+                    className="text-4xl md:text-6xl font-bold mb-6"
                 >
                     AI Models for<br />Business Solutions
                 </motion.h1>
@@ -26,7 +26,7 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.4 }}
-                    className="max-w-2xl mx-auto mb-8 px-4 py-2"
+                    className="w-[90%] text-xl md:w-3/5 md:text-2xl mx-auto mb-8 px-4 py-2"
                 >
                     <p>Leverage the power of AI to automate, analyze, and optimize your workflows. Our specialized models are designed to fit different business needs.</p>
                 </motion.div>
