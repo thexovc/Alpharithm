@@ -7,7 +7,7 @@ import BusinessSolutionsSection from "./BusinessSolutionsSection";
 
 export default function Home() {
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen -mt-1">
             <Head>
                 <title>AI Models for Business Solutions</title>
                 <meta name="description" content="Leverage the power of AI to automate, analyze, and optimize your workflows" />

@@ -17,7 +17,7 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="bg-[#04142B] text-white py-4 px-6 md:px-12">
+        <nav className="bg-[#04142B] text-white py-5 px-6 md:px-12">
             <div className="container mx-auto flex justify-between items-center">
                 <Link href={"/"} className="flex items-center">
                     <motion.div whileHover={{ rotate: 10 }}>

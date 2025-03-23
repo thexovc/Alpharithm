@@ -95,7 +95,7 @@ const BusinessSolutionsSection = () => {
                                         } rounded-2xl`}
                                     animate={{
                                         scale: isActive ? 1 : 0.85,
-                                        x: itemPosition * (window.innerWidth < 768 ? 0 : 300),
+                                        x: itemPosition * 300,
                                         opacity: isActive ? 1 : 0.8,
                                         zIndex: isActive ? 2 : 0,
                                     }}
