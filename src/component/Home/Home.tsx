@@ -4,7 +4,6 @@ import Head from "next/head";
 import HeroSection from "./HeroSection";
 import FeaturesSection from "./FeaturesSection";
 import BusinessSolutionsSection from "./BusinessSolutionsSection";
-import CTASection from "./CTASection";
 
 export default function Home() {
     return (

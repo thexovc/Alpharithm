@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "../component/layout/Navbar";
-import Footer from "../component/layout/Footer";
 import { AnimatePresence } from "framer-motion";
-import Header from "../component/layout/Header";
 
 export const metadata: Metadata = {
   title: "Create Next App",

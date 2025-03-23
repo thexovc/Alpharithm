@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Button from '../ui/Button';
 import Image from 'next/image';
 
@@ -62,19 +62,21 @@ const BusinessSolutionsSection = () => {
                 </motion.div>
 
                 {/* Navigation Pills */}
-                <div className="flex justify-center gap-4 mb-12">
-                    {tabData.map((tab) => (
-                        <button
-                            key={tab.id}
-                            onClick={() => setActiveTab(tab.id)}
-                            className={`px-4 py-2 transition-all ${activeTab === tab.id
-                                ? 'bg-[#03217F] text-white rounded-lg font-medium'
-                                : 'text-[#A7A7A7]'
-                                }`}
-                        >
-                            {tab.label}
-                        </button>
-                    ))}
+                <div className="mb-12 px-4">
+                    <div className="flex flex-wrap justify-center gap-2 md:border border-[#E4E4E7] w-fit mx-auto p-1 rounded-lg">
+                        {tabData.map((tab) => (
+                            <button
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id)}
+                                className={`px-3 md:px-4 py-2 border border-[#E4E4E7] md:border-none transition-all text-sm md:text-base w-[calc(33.33%-8px)] md:w-auto ${activeTab === tab.id
+                                    ? 'bg-[#03217F] text-white rounded-lg font-medium'
+                                    : 'text-[#A7A7A7]'
+                                    }`}
+                            >
+                                {tab.label}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
                 <div className="relative overflow-hidden">
@@ -88,23 +90,28 @@ const BusinessSolutionsSection = () => {
                                 <motion.div
                                     key={tab.id}
                                     className={`relative ${isActive
-                                        ? 'w-[1000px] bg-[#F6FAF3]'
-                                        : 'w-[400px] bg-white'
+                                        ? 'w-full md:w-[800px] lg:w-[1000px] bg-[#F6FAF3]'
+                                        : 'hidden md:block md:w-[300px] lg:w-[400px] bg-white'
                                         } rounded-2xl`}
                                     animate={{
                                         scale: isActive ? 1 : 0.85,
-                                        x: itemPosition * 300,
+                                        x: itemPosition * (window.innerWidth < 768 ? 0 : 300),
                                         opacity: isActive ? 1 : 0.8,
                                         zIndex: isActive ? 2 : 0,
                                     }}
                                     transition={{ duration: 0.5 }}
                                 >
-                                    <div className={`grid grid-cols-2 ${isActive ? 'h-[500px]' : 'h-[300px]'} gap-8 p-8`}>
-                                        <div className="space-y-6">
+                                    <div className={`grid grid-cols-1 md:grid-cols-2 ${isActive
+                                        ? 'h-auto md:h-[500px]'
+                                        : 'h-auto md:h-[300px]'
+                                        } gap-4 md:gap-8 p-4 md:p-8`}>
+                                        <div className="space-y-4 md:space-y-6">
                                             <p className="text-[#828282] text-sm">
                                                 {tab.label}
                                             </p>
-                                            <h2 className={`font-bold text-[#1D2939] ${isActive ? 'text-4xl leading-tight' : 'text-2xl'
+                                            <h2 className={`font-bold text-[#1D2939] ${isActive
+                                                ? 'text-2xl md:text-3xl lg:text-4xl leading-tight'
+                                                : 'text-xl md:text-2xl'
                                                 }`}>
                                                 {tab.title}
                                             </h2>
@@ -112,23 +119,27 @@ const BusinessSolutionsSection = () => {
                                                 <Button
                                                     variant="secondary"
                                                     size="lg"
-                                                    className="mt-8"
+                                                    className="mt-4 md:mt-8"
                                                 >
                                                     {tab.ctaText}
                                                 </Button>
                                             )}
                                         </div>
 
-                                        <div className={`${isActive ? 'h-[420px]' : 'h-[300px]'} relative rounded-xl overflow-hidden`}>
+                                        <div className={`${isActive
+                                            ? 'h-[250px] md:h-[350px] lg:h-[420px]'
+                                            : 'h-[200px] md:h-[300px]'
+                                            } relative rounded-xl overflow-hidden mt-4 md:mt-0`}>
                                             {tab.image ? (
                                                 <Image
                                                     src={tab.image}
                                                     alt={tab.label}
                                                     fill
                                                     className="object-cover"
+                                                    priority={isActive}
                                                 />
                                             ) : (
-                                                <div className="h-full w-full bg-gray-200 flex items-center justify-center">
+                                                <div className="h-full w-full bg-[#F6FAF3] flex items-center justify-center">
                                                     <p className="text-[#828282]">Image not available</p>
                                                 </div>
                                             )}

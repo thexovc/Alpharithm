@@ -4,7 +4,7 @@ import Button from '../ui/Button';
 
 const HeroSection = () => {
     return (
-        <section className="bg-gradient-to-b from-[#04142B] to-[#0037FF]  text-white py-16 px-6 md:px-12">
+        <section className="bg-gradient-to-b from-[#04142B] to-[#0037FF] text-white py-16 px-6 md:px-12">
             <div className="container mx-auto text-center">
                 <motion.h5
                     initial={{ opacity: 0 }}
